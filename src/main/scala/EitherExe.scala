@@ -1,3 +1,5 @@
+import AggEval.Agg
+
 object EitherExe extends App{
 
   def getOrElse(id: Int): Either[String, Int] = {
@@ -8,6 +10,8 @@ object EitherExe extends App{
     }
   }
   val t: Either[String, Int] = getOrElse(-1)
+
+
   val t2 = getOrElse(2)
   println(t2)
   t.left.foreach(println)
@@ -15,4 +19,8 @@ object EitherExe extends App{
     case Left(x) => println("left", x)
     case Right(x) => println("right", x)
   }
+  def buildQuery(agg: Agg): String = {
+    s"Aggregating with ${agg.keyword}"
+  }
+
 }

@@ -1,20 +1,22 @@
 package inheritage
-
 /**
   * When C extends T, T has a class property p, C don't need to have P type, but any type <: P
   */
 object Polymorphism extends App{
+
   class P(val f1: String){
     override def toString: String = f1
+
+    def fun: Any = "1"
+  }
+
+  class C(override val f1: String, val f2: String) extends P(f1){
+    override def toString: String = s"$f1\t$f2"
   }
 
   trait T {
     val p: P
     def fun(s: P):Int
-  }
-
-  class C(override val f1: String, val f2: String) extends P(f1){
-    override def toString: String = s"$f1\t$f2"
   }
 
   class A extends T {
@@ -30,20 +32,23 @@ object Polymorphism extends App{
     def fun(s: P) = 1
   }
 
-
   trait Parent[T]{
     val name: T
     def fun(name: T): Unit
+    def build():Any
   }
 
   class ChildP extends Parent[P]{
     val name: P = new P("William")
     def fun(name: P) = println(name)
+
+    override def build(): Int = 1
   }
 
   class ChildC extends Parent[C]{
     val name: C = new C("William", "the one")
     def fun(name: C) = println(name)
+    override def build(): String = "hi"
   }
 
   val childP: ChildP = new ChildP
@@ -52,4 +57,5 @@ object Polymorphism extends App{
   val nameC = new C("William", "the one")
   childP.fun(nameP)
   childP.fun(nameC)
+  println(childC.build())
 }

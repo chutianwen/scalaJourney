@@ -33,6 +33,10 @@ object MethodAndFunction extends App{
     case x if x < 0 => 0
   }
 
+  val fun2: Function[Int, Int] = {
+    x => x + 1
+  }
+
   println(partfun(4))
   println(partfun(-1))
   if(partfun.isDefinedAt(0)) println(partfun(0))

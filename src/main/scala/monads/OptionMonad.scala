@@ -8,7 +8,7 @@ import scala.collection.mutable
   *  any changes at all. Most higher-order function and for-comprehension idioms are consistent across all collection types.
   *
   *  1. Prefer Option(a) over Some(a)
-  *  2. forall(isPrime) == !exists(!isPrime), So None.forall(p) == !None.exist(!p)
+  *  2. Given example of 'forall(isPrime) == !exists(!isPrime)', So None.forall(p) == !None.exist(!p)
   *
 
   */
@@ -70,8 +70,9 @@ class OptionMonad {
     case None => Tracker.track(GUEST)
     case _ => // do not track
   }
+
   def track3Better(user: Option[User]): Unit = {
-    // using forall, case Some(u) u.canTrack == false will be implemented, and None.forall will return true, so track(GUEST) when None is fine
+    // using forall, case Some(u) if u.canTrack == false will be implemented, and None.forall will return true, so track(GUEST) when None is fine
     if (user forall (_.canTrack))
       Tracker.track(user map (_.id) getOrElse GUEST)
   }

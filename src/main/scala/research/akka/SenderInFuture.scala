@@ -22,7 +22,7 @@ class MessageActor extends Actor{
 				Thread.sleep(500)
 				// Cannot calling sender() inside another thread, especially this thread will take some time processing
 				// sender will change in the future threads
-				println("Future", self, sender(), message, message)
+				println("futureexe", self, sender(), message, message)
 			}
 			Thread.sleep(250)
 			println(self, sender(), message)

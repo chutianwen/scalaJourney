@@ -1,21 +1,21 @@
-import com.typesafe.sbt.SbtScalariform.ScalariformKeys
+//import com.typesafe.sbt.SbtScalariform.ScalariformKeys
 import sbt.Credentials
 import sbt.Keys.{credentials, fork, licenses, publishArtifact, publishTo}
 
-import scalariform.formatter.preferences.DoubleIndentConstructorArguments
-
+//import scalariform.formatter.preferences.DoubleIndentConstructorArguments
+//
 //enablePlugins(JavaAppPackaging)
 
 lazy val commonSettings = Seq(
 	organization := "com.fractal",
-	scalaVersion := "2.11.8",
+	scalaVersion := "2.11.11",
 	resolvers ++= Seq(
 		"snapshots"     at "https://oss.sonatype.org/content/repositories/snapshots",
 		"staging"       at "https://oss.sonatype.org/content/repositories/staging",
 		"releases"      at "https://oss.sonatype.org/content/repositories/releases",
 		DefaultMavenRepository
-	),
-	ScalariformKeys.preferences := ScalariformKeys.preferences.value.setPreference(DoubleIndentConstructorArguments, true)
+	)
+//	ScalariformKeys.preferences := ScalariformKeys.preferences.value.setPreference(DoubleIndentConstructorArguments, true)
 )
 
 lazy val SparkSandBox = (project in file("."))
@@ -38,7 +38,10 @@ lazy val SparkSandBox = (project in file("."))
 				"org.apache.spark" % "spark-mllib_2.11" % "2.2.0",
 				"org.apache.spark" % "spark-graphx_2.11" % "2.2.0",
 				"org.mongodb.spark" %% "mongo-spark-connector" % "2.2.0",
-				"org.typelevel" %% "cats" % "0.7.2"
+				"org.typelevel" %% "cats" % "0.7.2",
+				"org.scalatest" %% "scalatest" % "3.2.0-SNAP10" % Test,
+				"org.scalamock" %% "scalamock" % "4.1.0" % Test,
+				"ch.qos.logback" % "logback-classic" % "1.2.3"
 			)
 		}
 	)
